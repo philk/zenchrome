@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ZenChrome Popup</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="javascripts/app.js"></script>
+    <script type="text/javascript" src="javascripts/popup.js"></script>
+    <link rel="stylesheet" href="stylesheets/popup.css" type="text/css" /> -->
+    <script type="text/javascript" src="js/support.js"></script>
+  </head>
+<body style="width: 200px;">
+  <ul class="links">
+    <li><a href="#" id="main"></a>Home</li>
+    <!-- <li><a href="#" id="unassigned"></a></li>
+    <li><a href="#" id="updated"></a></li>
+    <li><a href="#" id="working"></a></li> -->
+  </ul>
+  <script>
+    var lists = [{name: "unassigned", display: "Unassigned Tickets", rule: 310378, tickets: 0}, 
+                 {name: "updated", display: "Updated Tickets", rule: 310379, tickets: 0},
+                 {name: "working", display: "Working Tickets", rule: 1272208, tickets: 0}]
+    $(document).ready(function(){
+      var arr = [];
+      arr = $.map(lists, function(v, i){
+        return '<li><a href="#" id="'+v.name+'">'+v.display+' ('+getNumberOfTickets(v.rule)+')';
+        // $('.links').append('<li><a href="#" id="'+v.name+'">'+v.display+' ('+getNumberOfTickets(v.rule)+')')
+      });
+      console.log(arr);
+      $.each(arr, function(i, v){ $('.links').append(v); })
+    });
+  </script>
+</body>
+</html>

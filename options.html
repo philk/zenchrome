@@ -1,0 +1,39 @@
+<html>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/support.js"></script>
+  <script>
+  </script>
+
+  <body>
+    Zendesk Domain: <input type="text" id="custom_domain" onInput="markDirty()">
+    <button id="save_button" onClick="save()">Save</button>
+    
+<script>
+  var customDomainsTextbox;
+  var saveButton;
+  
+  init();
+  
+  function init(){
+    customDomainsTextbox = document.getElementById("custom_domain");
+    saveButton = document.getElementById("save_button");
+    
+    customDomainsTextbox.value = localStorage.customDomain || "";
+    markClean();
+  }
+  
+  function save(){
+    localStorage.customDomain = customDomainsTextbox.value;
+    markClean();
+  }
+  
+  function markDirty(){
+    saveButton.disabled = false;
+  }
+  
+  function markClean(){
+    saveButton.disabled = true;
+  }
+</script>
+  </body>
+</html>
