@@ -6,14 +6,61 @@
     <link type="text/css" href="css/options.css" rel="stylesheet" media="all">
   </head>
   <body>
-    Zendesk Domain: <input type="text" id="custom_domain" onInput="markDirty()">.zendesk.com
-    <button id="save_button" onClick="save()">Save</button>
+    <p>
+      Zendesk Domain: <input type="text" id="custom_domain" onInput="markDirty()">.zendesk.com
+      <button id="save_button" onClick="save()">Save</button>
+    </p>
+    <p>
+    <table id="rules_table">
+      <Caption>Zendesk Rules</Caption>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Display Name</th>
+          <th>Rule Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dragHandle"></td>
+          <td>
+            <input type="text" class="input_display" id="rule_display_1" value="Working Tickets">
+          </td>
+          <td>
+            <input type="text" class="input_rule" id="rule_number_1" value="1272208">
+          </td>
+        </tr>
+        <tr>
+          <td class="dragHandle"></td>
+          <td>
+            <input type="text" class="input_display" id="rule_display_2" value="Unassigned Tickets">
+          </td>
+          <td>
+            <input type="text" class="input_rule" id="rule_number_2" value="310378">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </p>
     
 <script>
-  var customDomainsTextbox;
-  var saveButton;
-  
-  init();
+  $(document).ready(function(){
+    $("#rules_table").tableDnD({
+      dragHandle: "dragHandle"
+    });
+
+    // $("#rules_table tbody tr:odd").addClass("alt");
+
+    $("#rules_table tbody tr").hover(function(){
+      $(this.cells[0]).addClass('showDragHandle');
+    }, function(){
+      $(this.cells[0]).removeClass('showDragHandle');
+    });
+    var customDomainsTextbox;
+    var saveButton;
+
+    init();
+  });
   
   function init(){
     customDomainsTextbox = document.getElementById("custom_domain");
