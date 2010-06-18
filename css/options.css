@@ -1,0 +1,28 @@
+#rules_table {
+    border: 1px solid #999;
+}
+
+#rules_table td {
+    text-align: center;
+}
+
+.alt {
+    background-color: #DDD;
+}
+
+.dragHandle {
+    width: 19px;
+}
+.showDragHandle {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-image: url("/updown2.gif");
+}
+
+.input_display {
+    width: 130px;
+}
+
+.input_rule {
+    width: 70px;
+}
