@@ -2,11 +2,6 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/support.js"></script>
   <script>
-    function setTicketNumber() {
-      chrome.browserAction.setBadgeText({
-        text: getNumberOfTickets(1282631).toString()
-      });
-    }
     
     setTimeout(setTicketNumber, 2000);
     setInterval(setTicketNumber, 300000)
