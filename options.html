@@ -21,30 +21,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="dragHandle"></td>
-          <td>
-            <input type="text" class="input_display" id="rule_display_1" value="Working Tickets">
-          </td>
-          <td>
-            <input type="text" class="input_rule" id="rule_number_1" value="1272208">
-          </td>
-        </tr>
-        <tr>
-          <td class="dragHandle"></td>
-          <td>
-            <input type="text" class="input_display" id="rule_display_2" value="Unassigned Tickets">
-          </td>
-          <td>
-            <input type="text" class="input_rule" id="rule_number_2" value="310378">
-          </td>
-        </tr>
       </tbody>
     </table>
   </p>
     
 <script>
   $(document).ready(function(){
+    var views = JSON.parse(localStorage.views);
+    views.map(function(view){
+      $("#rules_table tbody").append('<tr><td class="dragHandle"></td><td><input type="text" class="input_display" id="rule_display_1" value="'+view.display+'"></td><td><input type="text" class="input_rule" id="rule_number_1" value="'+view.rule+'"></td></tr>')
+    });
+  
     $("#rules_table").tableDnD({
       dragHandle: "dragHandle"
     });
