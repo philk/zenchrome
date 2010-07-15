@@ -14,6 +14,7 @@ function initializeExt(){
         localStorage.setObject("views", []);
     }else{
         console.log("Views Here");
+        getAllTickets();
     };
 };
 
@@ -21,9 +22,10 @@ function getNumberOfTickets(view) {
   return localStorage.getObject(view).length; 
 };
 
-function refreshTickets(view) {
-    $.getJSON("https://leapfile.zendesk.com/rules/"+view.rule+".json", function(json){
-        localStorage.setObject(view.shortname, json);
+function refreshView(view) {
+    console.log("Refreshing: "+view.viewNumber);
+    $.getJSON("https://leapfile.zendesk.com/rules/"+view["viewNumber"]+".json", function(json){
+        localStorage.setObject(view["viewName"], json);
     });
 };
 
@@ -43,12 +45,10 @@ function delView(viewName){
 
 function getAllTickets(){
     var views = localStorage.getObject("views");
-    views.map(function(a){
-       getTickets(a);
-    });
-    console.log(arr);
-    setTimeout(setTicketNumber(arr[2].shortname), 3000);
-    console.log("Updating");
+    console.log(views);
+    views.map(refreshView);
+    setTimeout(setTicketNumber(views[0].viewName), 3000);
+    console.log("Updating All");
 };
 
 function setTicketNumber(view) {
@@ -56,4 +56,4 @@ function setTicketNumber(view) {
         text: getNumberOfTickets(view).toString()
     });
     console.log("Setting Ticket")
-}
+};
