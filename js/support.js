@@ -18,6 +18,13 @@ function initializeExt(){
     };
 };
 
+function startPolling(){
+    getAllTickets();
+    setTimeout(function(){
+        startPolling();
+    }, 300000);
+};
+
 function getNumberOfTickets(view) {
     return localStorage.getObject(view).length;
 };
@@ -47,7 +54,7 @@ function getAllTickets(){
     var views = localStorage.getObject("views");
     console.log(views);
     views.map(refreshView);
-    setTimeout(setTicketNumber(views[0].viewName), 3000);
+    setTimeout(setTicketNumber(views[0].viewName), 5000);
     console.log("Updating All");
 };
 
