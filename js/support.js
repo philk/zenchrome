@@ -8,18 +8,42 @@ Storage.prototype.getObject = function(key) {
 };
 // --
 
+function initializeExt(){
+    if (localStorage.views == undefined) {
+        console.log("No Views");
+        localStorage.setObject("views", []);
+    }else{
+        console.log("Views Here");
+    };
+};
+
 function getNumberOfTickets(view) {
   return localStorage.getObject(view).length; 
 };
 
-function getTickets(view) {
+function refreshTickets(view) {
     $.getJSON("https://leapfile.zendesk.com/rules/"+view.rule+".json", function(json){
         localStorage.setObject(view.shortname, json);
     });
 };
 
-function updateTickets(arr){
-    arr.map(function(a){
+function addView(view){
+    var views = localStorage.getObject("views");
+    views.push(view);
+    localStorage.setObject("views", views);
+};
+
+function delView(viewName){
+    var views = localStorage.getObject("views");
+    views = views.filter(function(element, index, array){
+        return (element["viewName"] != viewName);
+    });
+    localStorage.setObject("views", views);
+};
+
+function getAllTickets(){
+    var views = localStorage.getObject("views");
+    views.map(function(a){
        getTickets(a);
     });
     console.log(arr);
