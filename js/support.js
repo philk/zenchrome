@@ -19,7 +19,7 @@ function initializeExt(){
 };
 
 function getNumberOfTickets(view) {
-  return localStorage.getObject(view).length; 
+    return localStorage.getObject(view).length;
 };
 
 function refreshView(view) {
