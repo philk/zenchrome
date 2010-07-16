@@ -28,9 +28,10 @@
     
 <script>
   $(document).ready(function(){
-    var views = JSON.parse(localStorage.views);
+    var views = localStorage.getObject("views");
     views.map(function(view){
-      $("#rules_table tbody").append('<tr><td class="dragHandle"></td><td><input type="text" class="input_display" id="rule_display_1" value="'+view.display+'"></td><td><input type="text" class="input_rule" id="rule_number_1" value="'+view.rule+'"></td></tr>')
+      var rowId = $("#rules_table tbody tr").length;
+      addRow(view);
     });
   
     $("#rules_table").tableDnD({
