@@ -26,7 +26,7 @@ function startPolling(){
 };
 
 function getNumberOfTickets(view) {
-    return localStorage.getObject(view).length;
+    return localStorage.getObject("views").length;
 };
 
 function refreshView(view) {
