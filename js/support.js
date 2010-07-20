@@ -50,6 +50,21 @@ function delView(viewName){
     localStorage.setObject("views", views);
 };
 
+function saveView(viewId, viewName, viewNumber){
+    var views = localStorage.getObject("views");
+    if (views[viewId] == undefined) { views[viewId] = {}};
+    if (viewName) {
+        console.log("ViewName");
+        views[viewId]["viewName"] = viewName;
+    };
+    if (viewNumber) {
+        console.log("ViewNumber");
+        views[viewId]["viewNumber"] = viewNumber;
+    };
+    console.log(views);
+    localStorage.setObject("views", views);
+};
+
 function delViewById(viewId){
     var views = localStorage.getObject("views");
     views.splice(viewId, viewId);
@@ -82,11 +97,20 @@ function addRow(view){
 };
 
 function delRow(row){
-    var viewName = $('#inputName'+row).val();
-    console.log(viewName);
-    if (viewName != undefined) {
-        console.log("View Exists")
-        delViewById(row);
-    };
+    delViewById(row);
     $('#row'+row).remove();
+};
+
+function fieldUpdated(){
+    var self = $(this);
+    var rowId = parseInt(self.attr("id").match(/\d/));
+    console.log($(this));
+    console.log(rowId);
+    if (self.hasClass("input_display")) {
+        saveView(rowId, self.val(), undefined);
+        console.log("Name");
+    }else if (self.hasClass("input_rule")) {
+        saveView(rowId, undefined, self.val());
+        console.log("Rule");
+    };
 };
