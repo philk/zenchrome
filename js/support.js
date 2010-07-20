@@ -25,10 +25,6 @@ function startPolling(){
     }, 300000);
 };
 
-function getNumberOfTickets(view) {
-    return localStorage.getObject("views").length;
-};
-
 function refreshView(view) {
     console.log("Refreshing: "+view.viewNumber);
     $.getJSON("https://leapfile.zendesk.com/rules/"+view["viewNumber"]+".json", function(json){
@@ -79,9 +75,14 @@ function getAllTickets(){
     console.log("Updating All");
 };
 
-function setTicketNumber(view) {
+function getNumberOfTickets(view) {
+    return localStorage.getObject(view).length;
+};
+
+function setTicketNumber(viewName) {
+    var number = getNumberOfTickets(viewName);
     chrome.browserAction.setBadgeText({
-        text: getNumberOfTickets(view).toString()
+        text: number.toString()
     });
     console.log("Setting Ticket")
 };
