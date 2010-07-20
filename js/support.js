@@ -87,6 +87,7 @@ function setTicketNumber(view) {
 };
 
 function addRow(view){
+    $(":input").unbind();
     console.log("Adding...");
     var rowId = $("#rules_table tbody tr").length;
     if (view == undefined) {
@@ -94,6 +95,7 @@ function addRow(view){
     }else{
         $("#rules_table tbody").append('<tr id="row'+rowId+'"><td class="dragHandle"></td><td><input type="text" class="input_display" id="inputname'+rowId+'" value="'+view.viewName+'"></td><td><input type="text" class="input_rule" id="inputNumber'+rowId+'" value="'+view.viewNumber+'"></td><td><a href="#" onClick=\'delRow('+rowId+');\'><img src="img/list-remove.png"/></a></td></tr>');
     };
+    $(":input").focusout(fieldUpdated);
 };
 
 function delRow(row){
