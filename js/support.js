@@ -8,6 +8,12 @@ Storage.prototype.getObject = function(key) {
 };
 // --
 
+// Borrowed from http://www.mediacollege.com/internet/javascript/text/case-capitalize.html
+String.prototype.capitalize = function(){
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
+// --
+
 function initializeExt(){
     if (localStorage.views == undefined) {
         console.log("No Views");
