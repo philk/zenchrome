@@ -77,7 +77,7 @@ function getAllTickets(){
     var views = localStorage.getObject("views");
     console.log(views);
     views.map(refreshView);
-    setTimeout(setTicketNumber(views[0].viewName), 5000);
+    setTicketNumber(views[0].viewName);
     console.log("Updating All");
 };
 
