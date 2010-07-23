@@ -9,6 +9,6 @@
   },
   "options_page": "options.html",
   "permissions": [
-    "https://*.zendesk.com/", "http://*.zendesk.com/"
+    "tabs", "https://*.zendesk.com/", "http://*.zendesk.com/"
   ]
 }
