@@ -123,3 +123,26 @@ function fieldUpdated(){
         console.log("Rule");
     };
 };
+
+function refreshPopup(){
+    getAllTickets();
+};
+
+// Stolen from Yermah plugin
+function isZendeskUrl(url) {
+    return false;
+};
+
+function goToZendesk(rule) {
+    var url = 'http://leapfile.zendesk.com/rules/'+rule;
+    chrome.tabs.getAllInWindow(undefined, function(tabs) {
+      for(var i = 0, tab; tab = tabs[i]; i++) {
+        if(tab.url && isZendeskUrl(tab.url)) {
+          chrome.tabs.update(tab.id, { selected: true });
+          return;
+        }
+      }
+      chrome.tabs.create({url: url});
+    });
+};
+// --

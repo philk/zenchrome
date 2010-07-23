@@ -10,21 +10,18 @@
     <link rel="stylesheet" href="stylesheets/popup.css" type="text/css" /> -->
     <script type="text/javascript" src="js/support.js"></script>
   </head>
-<body style="width: 200px;">
-  <ul class="links">
-    <li><a href="#" id="main"></a>Home</li>
-    <!-- <li><a href="#" id="unassigned"></a></li>
-    <li><a href="#" id="updated"></a></li>
-    <li><a href="#" id="working"></a></li> -->
-  </ul>
-  <script>
-    $(document).ready(function(){
-      var v = localStorage.updated;
-      console.log(v);
-      $('.links').append('<li><a href="#" id="'+v.shortname+'">'+v.display+' ('+getNumberOfTickets(v.rule)+')');
-      
-      var v = localStorage.unassigned;
-      $('.links').append('<li><a href="#" id="'+v.shortname+'">'+v.display+' ('+getNumberOfTickets(v.rule)+')');
-  </script>
-</body>
+  <body style="width: 200px;">
+    <a class="buttons" href="#" onClick="refreshPopup();"><img src="img/view-refresh.png"/></a>
+    <ul class="links">
+      <li><a href="#" id="main"></a>Home</li>
+    </ul>
+    <script>
+      $(document).ready(function(){
+        var views = localStorage.getObject("views");
+        views.map(function(view){
+          $('.links').append('<li><a href="#" id='+view.viewName+' onClick="goToZendesk('+view.viewNumber+');">'+view.viewName.capitalize()+' ('+getNumberOfTickets(view.viewName)+')');
+        });
+      });
+    </script>
+  </body>
 </html>
