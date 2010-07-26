@@ -82,7 +82,12 @@ function getAllTickets(){
 };
 
 function getNumberOfTickets(view) {
-    return localStorage.getObject(view).length;
+    var view = localStorage.getObject(view)
+    if (view == null) {
+        return "!";
+    }else{
+        return view.length;
+    };
 };
 
 function setTicketNumber(viewName) {
