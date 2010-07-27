@@ -1,7 +1,7 @@
 {
   "name": "ZenChrome",
   "background_page": "background.html",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Grabs ticket numbers from Zendesk",
   "browser_action": {
     "default_icon": "icon.png",
