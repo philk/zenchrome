@@ -33,8 +33,12 @@ function startPolling(){
 
 function refreshView(view) {
     console.log("Refreshing: "+view.viewNumber);
+    var views = this;
     $.getJSON("https://leapfile.zendesk.com/rules/"+view["viewNumber"]+".json", function(json){
         localStorage.setObject(view["viewName"], json);
+        if (views[0]["viewNumber"] == view["viewNumber"]) { 
+            setTicketNumber(view["viewName"]);
+        };
     });
 };
 
@@ -56,11 +60,9 @@ function saveView(viewId, viewName, viewNumber){
     var views = localStorage.getObject("views");
     if (views[viewId] == undefined) { views[viewId] = {}};
     if (viewName) {
-        console.log("ViewName");
         views[viewId]["viewName"] = viewName;
     };
     if (viewNumber) {
-        console.log("ViewNumber");
         views[viewId]["viewNumber"] = viewNumber;
     };
     console.log(views);
@@ -76,15 +78,14 @@ function delViewById(viewId){
 function getAllTickets(){
     var views = localStorage.getObject("views");
     console.log(views);
-    views.map(refreshView);
-    setTicketNumber(views[0].viewName);
+    views.map(refreshView, views);
     console.log("Updating All");
 };
 
 function getNumberOfTickets(view) {
     var view = localStorage.getObject(view)
     if (view == null) {
-        return "!";
+        return "?";
     }else{
         return view.length;
     };
